@@ -1,0 +1,81 @@
+<mujoco model="ranger_mini_v2">
+  <compiler angle="radian"/>
+
+  <worldbody>
+    <body name="base_link" pos="0 0 0.75">
+      <!--<freejoint/>-->
+      <geom size="0.25 0.175 0.1" pos="0 0 -0.1" type="box"/>
+      <body name="fl_steering_wheel_link" pos="0.23 0.206 -0.1">
+        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01"/>
+        <joint name="fl_steering_wheel" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
+        <geom size="0.001 0.0005" pos="0 0 0.008" type="cylinder"/>
+        <geom size="0.001 0.0005" type="cylinder"/>
+        <body name="fl_wheel_link" pos="0.03 0.01 -0.12">
+          <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="8" diaginertia="0.1361 0.1171 0.1171"/>
+          <joint name="fl_wheel" pos="0 0 0" axis="0 1 0"/>
+          <geom size="0.08 0.04" quat="0.707388 0.706825 0 0" type="cylinder"/>
+        </body>
+      </body>
+      <body name="fr_steering_wheel_link" pos="0.23 -0.206 -0.1">
+        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01"/>
+        <joint name="fr_steering_wheel" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
+        <geom size="0.001 0.0005" pos="0 0 0.008" type="cylinder"/>
+        <body name="fr_wheel_link" pos="0 0 -0.12">
+          <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="8" diaginertia="0.1361 0.1171 0.1171"/>
+          <joint name="fr_wheel" pos="0 0 0" axis="0 1 0"/>
+          <geom size="0.08 0.04" quat="0.707388 0.706825 0 0" type="cylinder"/>
+        </body>
+      </body>
+      <body name="rl_steering_wheel_link" pos="-0.23 0.206 -0.1">
+        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01"/>
+        <joint name="rl_steering_wheel" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
+        <geom size="0.001 0.0005" pos="0 0 0.008" type="cylinder"/>
+        <body name="rl_wheel_link" pos="0 0 -0.12">
+          <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="8" diaginertia="0.1361 0.1171 0.1171"/>
+          <joint name="rl_wheel" pos="0 0 0" axis="0 1 0"/>
+          <geom size="0.08 0.04" quat="0.707388 0.706825 0 0" type="cylinder"/>
+        </body>
+      </body>
+      <body name="rr_steering_wheel_link" pos="-0.23 -0.206 -0.1">
+        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01"/>
+        <joint name="rr_steering_wheel" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
+        <geom size="0.001 0.0005" type="cylinder"/>
+        <body name="rr_wheel_link" pos="0 0 -0.12">
+          <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="8" diaginertia="0.1361 0.1171 0.1171"/>
+          <joint name="rr_wheel" pos="0 0 0" axis="0 1 0"/>
+          <geom size="0.08 0.04" quat="0.707388 0.706825 0 0" type="cylinder"/>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <contact>
+    <exclude body1="base_link" body2="fl_steering_wheel_link"/>
+    <exclude body1="base_link" body2="fl_wheel_link"/>
+    <exclude body1="fl_steering_wheel_link" body2="fl_wheel_link"/>
+
+    <exclude body1="base_link" body2="fr_steering_wheel_link"/>
+    <exclude body1="base_link" body2="fr_wheel_link"/>
+    <exclude body1="fr_steering_wheel_link" body2="fr_wheel_link"/>
+
+    <exclude body1="base_link" body2="rl_steering_wheel_link"/>
+    <exclude body1="base_link" body2="rl_wheel_link"/>
+    <exclude body1="rl_steering_wheel_link" body2="rl_wheel_link"/>
+
+    <exclude body1="base_link" body2="rr_steering_wheel_link"/>
+    <exclude body1="base_link" body2="rr_wheel_link"/>
+    <exclude body1="rr_steering_wheel_link" body2="rr_wheel_link"/>
+  </contact>
+
+  <actuator>
+    <motor joint="fl_wheel" ctrlrange="-1 1" ctrllimited="true"/>
+    <motor joint="fr_wheel" ctrlrange="-1 1" ctrllimited="true"/>
+    <motor joint="rl_wheel" ctrlrange="-1 1" ctrllimited="true"/>
+    <motor joint="rr_wheel" ctrlrange="-1 1" ctrllimited="true"/>
+
+    <position joint="fl_steering_wheel" kp="40"/>
+    <position joint="fr_steering_wheel" kp="40"/>
+    <position joint="rl_steering_wheel" kp="40"/>
+    <position joint="rr_steering_wheel" kp="40"/>
+  </actuator>
+</mujoco>
