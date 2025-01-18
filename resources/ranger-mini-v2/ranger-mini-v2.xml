@@ -7,62 +7,68 @@
     <mesh name="ranger_wheel_fr" file="assets/ranger-wheel-2.stl"/>
     <mesh name="ranger_wheel_rl" file="assets/ranger-wheel-3.stl"/>
     <mesh name="ranger_wheel_rr" file="assets/ranger-wheel-4.stl"/>
+    <mesh name="ranger_suspension_link_1" file="assets/ranger-suspension-link-1.stl"/>
+    <mesh name="ranger_suspension_link_2" file="assets/ranger-suspension-link-2.stl"/>
+    <mesh name="ranger_suspension_link_3" file="assets/ranger-suspension-link-3.stl"/>
+    <mesh name="ranger_suspension_link_4" file="assets/ranger-suspension-link-4.stl"/>
 
     <material name="mat_wheel_visual" rgba="0.2 0.2 0.2 1"/>
-    <material name="mat_wheel_collider" rgba="1 1 1 0"/>
+    <material name="mat_wheel_collider" rgba="1 1 1 0.1"/>
   </asset>
-
 
   <worldbody>
     <body name="base_link" pos="0 0 0.75">
       <freejoint/>
       <inertial pos="0.000 -0.02 0.00" quat="0.492347 0.507724 -0.508707 0.490946" mass="100" diaginertia="2.54702 1.91073 1.14066" />
-      <geom size="0.25 0.369 0.06" pos="0 0 0.18" type="box" rgba="1 1 1 0"/>
-      <geom type="mesh" contype="0" conaffinity="0" rgba="1 1 1 1" mesh="ranger_base"/>
+      <geom name="base_link_collider" type="box" size="0.25 0.369 0.06" pos="0 0 0.18" rgba="1 1 1 0.1"/>
+      <geom name="base_link_visual" type="mesh" contype="0" conaffinity="0" rgba="1 1 1 1" mesh="ranger_base"/>
+      <!-- Forward left steering -->
       <body name="fl_steering_wheel_link" pos="-0.182 0.248088 0.116139" quat="0.99999 -0.00436331 0 0">
-        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01"/>
-        <joint name="fl_steering_wheel" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
-        <geom size="0.001 0.0005" pos="0 0 0.008" type="cylinder"/>
-        <geom size="0.001 0.0005" type="cylinder"/>
+        <inertial pos="0.0562358 0.0136672 -0.0689303" quat="0.480602 -0.109201 -0.000258328 0.870113" mass="0.258645" diaginertia="0.000990911 0.000881135 0.000289082" />
+        <joint name="fl_steering_wheel_joint" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
+        <geom name="fl_steering_wheel_visual" type="mesh" contype="0" conaffinity="0" rgba="1 1 1 1" mesh="ranger_suspension_link_1"/>
         <!-- Forward-left wheel -->
-        <body name="fl_wheel_link" pos="0.03 0.01 -0.12">
-          <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="8" diaginertia="0.1361 0.1171 0.1171"/>
+        <body name="fl_wheel_link" pos="-0.0208 0.00194295 -0.129803" quat="0.99999 0.00436331 0 0">
+          <inertial pos="0.0204393 3.33773e-08 1.33779e-07" quat="0.939607 -0.342254 1.613e-06 -5.8754e-07" mass="1.15818" diaginertia="0.00501965 0.00272122 0.00272119" />
           <joint name="fl_wheel_joint" axis="-1 0 0" damping="1"/>
           <geom name="fl_wheel_visual" type="mesh" contype="0" conaffinity="0" mesh="ranger_wheel_fl" material="mat_wheel_visual"/>
           <geom name="fl_wheel_collider" type="cylinder" size="0.0935 0.026" pos="0.0185 0 0" quat="0.707107 0 0.707107 0" material="mat_wheel_collider"/>
         </body>
       </body>
+      <!-- Forward right steering -->
       <body name="fr_steering_wheel_link" pos="0.182 0.248088 0.116139" quat="0.99999 -0.00436331 0 0">
-        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01"/>
-        <joint name="fr_steering_wheel" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
-        <geom size="0.001 0.0005" pos="0 0 0.008" type="cylinder"/>
+        <inertial pos="-0.0563063 -0.0136807 -0.0689934" quat="0.434721 0.121652 -0.0192069 0.892104" mass="0.258387" diaginertia="0.00100741 0.000933733 0.000328543" />
+        <joint name="fr_steering_wheel_joint" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
+        <geom name="fr_steering_wheel_visual" type="mesh" contype="0" conaffinity="0" rgba="1 1 1 1" mesh="ranger_suspension_link_2"/>
         <!-- Forward-right wheel -->
-        <body name="fr_wheel_link" pos="0 0 -0.12">
-          <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="8" diaginertia="0.1361 0.1171 0.1171"/>
+        <body name="fr_wheel_link" pos="0.0208 -0.00194295 -0.129803" quat="0.99999 0.00436331 0 0">
+          <inertial pos="-0.020454 -1.09626e-07 6.94701e-08" quat="0.969649 0.244501 -1.61246e-06 -4.06588e-07" mass="1.15757" diaginertia="0.00501676 0.0027194 0.00271938" />
           <joint name="fr_wheel_joint" axis="-1 0 0" damping="1"/>
           <geom name="fr_wheel_visual" type="mesh" contype="0" conaffinity="0" mesh="ranger_wheel_fr" material="mat_wheel_visual"/>
           <geom name="fr_wheel_collider" type="cylinder" size="0.0935 0.026" pos="-0.0185 0 0" quat="0.707107 0 0.707107 0" material="mat_wheel_collider"/>
         </body>
       </body>
+      <!-- Rear left steering -->
       <body name="rl_steering_wheel_link" pos="-0.182 -0.245893 0.12045" quat="0.99999 -0.00436331 0 0">
-        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01"/>
-        <joint name="rl_steering_wheel" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
-        <geom size="0.001 0.0005" pos="0 0 0.008" type="cylinder"/>
+        <inertial pos="0.0562358 0.0136672 -0.0689303" quat="0.480602 -0.109201 -0.000258328 0.870113" mass="0.258645" diaginertia="0.000990911 0.000881135 0.000289082" />
+        <joint name="rl_steering_wheel_joint" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
+        <geom name="rl_steering_wheel_visual" type="mesh" contype="0" conaffinity="0" rgba="1 1 1 1" mesh="ranger_suspension_link_3"/>
         <!-- Rear-left wheel -->
-        <body name="rl_wheel_link" pos="0 0 -0.12">
-          <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="8" diaginertia="0.1361 0.1171 0.1171"/>
+        <body name="rl_wheel_link" pos="-0.0208 0.00194295 -0.129803" quat="0.99999 0.00436331 0 0">
+          <inertial pos="0.0204393 3.33773e-08 1.33779e-07" quat="0.939607 -0.342254 1.613e-06 -5.8754e-07" mass="1.15818" diaginertia="0.00501965 0.00272122 0.00272119" />
           <joint name="rl_wheel_joint" axis="-1 0 0" damping="1"/>
           <geom name="rl_wheel_visual" type="mesh" contype="0" conaffinity="0" mesh="ranger_wheel_rl" material="mat_wheel_visual"/>
           <geom name="rl_wheel_collider" type="cylinder" size="0.0935 0.026" pos="0.0185 0 0" quat="0.707107 0 0.707107 0" material="mat_wheel_collider"/>
         </body>
       </body>
+      <!-- Rear right steering -->
       <body name="rr_steering_wheel_link" pos="0.182 -0.245893 0.12045" quat="0.99999 -0.00436331 0 0">
-        <inertial pos="0 0 0" mass="1" diaginertia="0.01 0.01 0.01"/>
-        <joint name="rr_steering_wheel" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
-        <geom size="0.001 0.0005" type="cylinder"/>
+        <inertial pos="-0.0562389 0.0136676 -0.0689297" quat="0.870112 0.000253454 0.109184 0.480608" mass="0.25865" diaginertia="0.000990936 0.000881147 0.000289094" />
+        <joint name="rr_steering_wheel_joint" pos="0 0 0" axis="0 0 1" range="-2.1 2.1" actuatorfrcrange="-5 5"/>
+        <geom name="rr_steering_wheel_visual" type="mesh" contype="0" conaffinity="0" rgba="1 1 1 1" mesh="ranger_suspension_link_4"/>
         <!-- Rear-right wheel -->
-        <body name="rr_wheel_link" pos="0 0 -0.12">
-          <inertial pos="0 0 0" quat="0.707107 0 0 0.707107" mass="8" diaginertia="0.1361 0.1171 0.1171"/>
+        <body name="rr_wheel_link" pos="0.0208 0.00194295 -0.129803" quat="0.99999 0.00436331 0 0">
+          <inertial pos="-0.020454 -1.01629e-07 -8.15539e-08" quat="0.647155 0.762358 -5.50799e-07 -1.71001e-06" mass="1.15757" diaginertia="0.00501676 0.0027194 0.00271938" />
           <joint name="rr_wheel_joint" axis="-1 0 0" damping="1"/>
           <geom name="rr_wheel_visual" type="mesh" contype="0" conaffinity="0" mesh="ranger_wheel_rr" material="mat_wheel_visual"/>
           <geom name="rr_wheel_collider" type="cylinder" size="0.0935 0.026" pos="-0.0185 0 0" quat="0.707107 0 0.707107 0" material="mat_wheel_collider"/>
@@ -95,9 +101,9 @@
     <motor name="rl_wheel_motor" joint="rl_wheel_joint" ctrlrange="-5 5" ctrllimited="true"/>
     <motor name="rr_wheel_motor" joint="rr_wheel_joint" ctrlrange="-5 5" ctrllimited="true"/>
 
-    <position name="fl_wheel_steer" joint="fl_steering_wheel" kp="10" kv="1"/>
-    <position name="fr_wheel_steer" joint="fr_steering_wheel" kp="10" kv="1"/>
-    <position name="rl_wheel_steer" joint="rl_steering_wheel" kp="10" kv="1"/>
-    <position name="rr_wheel_steer" joint="rr_steering_wheel" kp="10" kv="1"/>
+    <position name="fl_wheel_steer" joint="fl_steering_wheel_joint" kp="10" kv="1"/>
+    <position name="fr_wheel_steer" joint="fr_steering_wheel_joint" kp="10" kv="1"/>
+    <position name="rl_wheel_steer" joint="rl_steering_wheel_joint" kp="10" kv="1"/>
+    <position name="rr_wheel_steer" joint="rr_steering_wheel_joint" kp="10" kv="1"/>
   </actuator>
 </mujoco>
