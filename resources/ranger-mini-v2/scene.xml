@@ -1,5 +1,6 @@
 <mujoco model="robo-scene-ranger-mini-v2">
   <include file="mobile-manipulator.xml"/>
+  <!-- <include file="xarm7.xml"/> -->
 
   <statistic center="0 0 0.8" extent="2"/>
 
