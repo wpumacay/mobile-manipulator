@@ -1,5 +1,5 @@
 <mujoco model="robo-scene-ranger-mini-v2">
-  <include file="ranger-mini-v2.xml"/>
+  <include file="mobile-manipulator.xml"/>
 
   <statistic center="0 0 0.8" extent="2"/>
 
