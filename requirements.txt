@@ -1,1 +1,8 @@
 mujoco>=3.2.6
+pandas
+shapely
+moviepy==1.0.3
+python-fcl
+networkx
+ai2thor
+procthor
