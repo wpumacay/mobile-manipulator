@@ -68,6 +68,10 @@ class Runtime:
         for prim in self.primitives:
             prim.mjc_id = mj.mj_name2id(model, mj.mjtObj.mjOBJ_BODY.value, prim.name)
 
+        model_xml = self.spec.to_xml()
+        with open("mj_model.xml", "w") as fhandle:
+            fhandle.write(model_xml)
+
         return model
 
 
