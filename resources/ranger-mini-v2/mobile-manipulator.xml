@@ -83,7 +83,7 @@
   </default>
 
   <worldbody>
-    <body name="base_link" pos="0 0 0.75">
+    <body name="base_link" pos="-1 -1 0.75">
       <freejoint/>
       <inertial pos="0.000 -0.02 0.00" quat="0.492347 0.507724 -0.508707 0.490946" mass="60" diaginertia="2.54702 1.91073 1.14066" />
       <geom name="base_link_collider" type="box" size="0.25 0.369 0.06" pos="0 0 0.18" rgba="1 1 1 0.1"/>

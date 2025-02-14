@@ -173,3 +173,7 @@ cython_debug/
 MUJOCO_LOG.TXT
 
 typings/
+
+resources/ycb
+
+mj_model.xml
