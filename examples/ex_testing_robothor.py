@@ -136,7 +136,7 @@ def main() -> int:
     model_path = Path(__file__).parent.parent / "resources" / "ranger-mini-v2" / "scene.xml"
     spec = mj.MjSpec.from_file(str(model_path.resolve()))
     robot_base_body = spec.find_body("base_link")
-    robot_base_body.pos = np.array([11.5 * SCALE, 6.0 * SCALE, 0.75])
+    robot_base_body.pos = np.array([11.0 * SCALE, 6.0 * SCALE, 0.75])
 
     vertices, faces = create_mesh()
     _ = spec.add_mesh(name="custom_mesh", uservert=vertices.ravel(), userface=faces.ravel())
@@ -153,7 +153,7 @@ def main() -> int:
     create_robothor_object(
         spec,
         ROBOTHOR_ASSETS_BASEPATH / "Sofa" / "Prefabs" / "RoboTHOR_sofa_alrid" / "RoboTHOR_sofa_alrid.xml",
-        SCALE * np.array([2.0, 3.5, 1.0]),
+        SCALE * np.array([2.0, 4.5, 1.0]),
         np.array([np.pi / 2, 0.0, 0.0]),
     )
 
@@ -175,6 +175,20 @@ def main() -> int:
         spec,
         ROBOTHOR_ASSETS_BASEPATH / "Chair" / "Prefabs" / "RoboTHOR_chair_antnas" / "RoboTHOR_chair_antnas.xml",
         SCALE * np.array([14.0, 5.5, 1.0]),
+        np.array([np.pi / 2, 0.0, 0.0]),
+    )
+
+    create_robothor_object(
+        spec,
+        ROBOTHOR_ASSETS_BASEPATH / "Desk" / "Prefabs" / "RoboTHOR_desk_alve" / "RoboTHOR_desk_alve.xml",
+        SCALE * np.array([12.5, 6.5, 1.0]),
+        np.array([np.pi / 2, 0.0, 0.0]),
+    )
+
+    create_robothor_object(
+        spec,
+        ROBOTHOR_ASSETS_BASEPATH / "FloorLamp" / "Prefabs" / "RoboTHOR_floor_lamp_holmo_v" / "RoboTHOR_floor_lamp_holmo_v.xml",
+        SCALE * np.array([2.0, 2.5, 1.0]),
         np.array([np.pi / 2, 0.0, 0.0]),
     )
 
