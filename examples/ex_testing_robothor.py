@@ -145,10 +145,10 @@ def main() -> int:
     mesh0.add_freejoint()
     mesh0.add_geom(type=mj.mjtGeom.mjGEOM_MESH, meshname="custom_mesh")
 
-    create_ycb_object(spec, "002_master_chef_can", np.array([0.5, 0.5, 2.0]))
-    create_ycb_object(spec, "003_cracker_box", np.array([-0.5, 0.5, 2.0]))
-    create_ycb_object(spec, "004_sugar_box", np.array([0.5, -0.5, 2.0]))
-    create_ycb_object(spec, "006_mustard_bottle", np.array([-0.5, -0.5, 2.0]))
+    create_ycb_object(spec, "002_master_chef_can",  np.array([12.5 * SCALE - 0.125, 3.5 * SCALE - 0.125, 0.625]))
+    create_ycb_object(spec, "003_cracker_box",      np.array([12.5 * SCALE - 0.125, 3.5 * SCALE + 0.125, 0.625]))
+    create_ycb_object(spec, "004_sugar_box",        np.array([12.5 * SCALE + 0.125, 3.5 * SCALE + 0.125, 0.625]))
+    create_ycb_object(spec, "006_mustard_bottle",   np.array([12.5 * SCALE + 0.125, 3.5 * SCALE - 0.125, 0.625]))
 
     create_robothor_object(
         spec,
@@ -167,7 +167,7 @@ def main() -> int:
     create_robothor_object(
         spec,
         ROBOTHOR_ASSETS_BASEPATH / "SideTable" / "Prefabs" / "RoboTHOR_side_table_fornbro" / "RoboTHOR_side_table_fornbro.xml",
-        SCALE * np.array([12.5, 3.5, 1.0]),
+        SCALE * np.array([12.5, 3.5, 0.6]),
         np.array([np.pi / 2, 0.0, 0.0]),
     )
 
